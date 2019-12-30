@@ -3,7 +3,7 @@
 ### netboot.xyz-custom menu
 ###
 
-set base-url http://192.168.13.251/windows
+set base_url http://pxe.lan/windows
 
 :custom
 clear custom_choice
