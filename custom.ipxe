@@ -23,13 +23,6 @@ initrd ${base_url_custom}/${custom_choice}/bootmgr bootmgr
 initrd ${base_url_custom}/${custom_choice}/boot/bcd bcd
 initrd ${base_url_custom}/${custom_choice}/boot/boot.sdi boot.sdi
 initrd ${base_url_custom}/${custom_choice}/sources/boot.wim boot.wim
-md5sum wimboot
-iseq ${img_sigs_enabled} true && goto verify_sigs || goto skip_sigs
-:verify_sigs
-echo
-echo Checking wimboot signature...
-imgverify wimboot ${sigs}wimboot.sig || goto error
-:skip_sigs
 boot
 
 :custom_exit
