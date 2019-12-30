@@ -3,10 +3,22 @@
 ### netboot.xyz-custom menu
 ###
 
-:start
-echo Hello world!
-sleep 10
-goto custom_exit
+set base-url http://pxe.lan/windows
 
-:custom_exit
+:start
+kernel http://${boot_domain}/wimboot
+initrd ${base_url}/${win_arch}/bootmgr bootmgr
+initrd ${base_url}/${win_arch}/boot/bcd bcd
+initrd ${base_url}/${win_arch}/boot/boot.sdi boot.sdi
+initrd ${base_url}/${win_arch}/sources/boot.wim boot.wim
+md5sum wimboot
+iseq ${img_sigs_enabled} true && goto verify_sigs || goto skip_sigs
+:verify_sigs
+echo
+echo Checking wimboot signature...
+imgverify wimboot ${sigs}wimboot.sig || goto error
+:skip_sigs
+boot
+
+:exit
 exit 0
