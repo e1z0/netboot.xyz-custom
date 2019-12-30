@@ -13,15 +13,15 @@ item --gap Install ${os} version:
 item WIN10X64.PRO.ENU.SEP2019 ${space} WIN10X64.PRO.ENU.SEP2019...
 choose custom_choice || goto custom_exit
 echo ${cls}
-goto ${custom_choice}
+goto win_inst
 
 
-:WIN10X64.PRO.ENU.SEP2019
+:win_inst
 kernel http://${boot_domain}/wimboot
-initrd ${base_url}/WIN10X64.PRO.ENU.SEP2019/bootmgr bootmgr
-initrd ${base_url}/WIN10X64.PRO.ENU.SEP2019/boot/bcd bcd
-initrd ${base_url}/WIN10X64.PRO.ENU.SEP2019/boot/boot.sdi boot.sdi
-initrd ${base_url}/WIN10X64.PRO.ENU.SEP2019/sources/boot.wim boot.wim
+initrd ${base_url}/${custom_choice}/bootmgr bootmgr
+initrd ${base_url}/${custom_choice}/boot/bcd bcd
+initrd ${base_url}/${custom_choice}/boot/boot.sdi boot.sdi
+initrd ${base_url}/${custom_choice}/sources/boot.wim boot.wim
 md5sum wimboot
 iseq ${img_sigs_enabled} true && goto verify_sigs || goto skip_sigs
 :verify_sigs
