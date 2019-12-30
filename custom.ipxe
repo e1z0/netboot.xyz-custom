@@ -5,11 +5,12 @@
 
 set base-url http://pxe.lan/windows
 
-goto windows
+goto ${menu} ||
 
-:windows
-menu Microsoft Windows
-item --gap Install version:
+:custom
+set os Microsoft Windows
+menu ${os}
+item --gap Install ${os} version:
 item WIN10X64.PRO.ENU.SEP2019 ${space} WIN10X64.PRO.ENU.SEP2019...
 goto windows
 
