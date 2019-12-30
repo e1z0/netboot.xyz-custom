@@ -9,7 +9,7 @@ set base_url_custom http://192.168.13.251/windows
 clear custom_choice
 set os Microsoft Windows
 menu ${os}
-item --gap Install ${os} version:
+item --gap Install ${os} version (only EFI):
 item WIN10X64.PRO.ENU.SEP2019 ${space} WIN10X64.PRO.ENU.SEP2019
 item LTSCX64.3in1.ENU.JUN2019 ${space} LTSCX64.3in1.ENU.JUN2019
 choose custom_choice || goto custom_exit
