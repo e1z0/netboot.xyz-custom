@@ -3,7 +3,7 @@
 ### netboot.xyz-custom menu
 ###
 
-set base_url "http://192.168.13.251/windows"
+set base_url_custom http://192.168.13.251/windows
 
 :custom
 clear custom_choice
@@ -18,10 +18,10 @@ goto win_inst
 
 :win_inst
 kernel http://${boot_domain}/wimboot
-initrd ${base_url}/${custom_choice}/bootmgr bootmgr
-initrd ${base_url}/${custom_choice}/boot/bcd bcd
-initrd ${base_url}/${custom_choice}/boot/boot.sdi boot.sdi
-initrd ${base_url}/${custom_choice}/sources/boot.wim boot.wim
+initrd ${base_url_custom}/${custom_choice}/bootmgr bootmgr
+initrd ${base_url_custom}/${custom_choice}/boot/bcd bcd
+initrd ${base_url_custom}/${custom_choice}/boot/boot.sdi boot.sdi
+initrd ${base_url_custom}/${custom_choice}/sources/boot.wim boot.wim
 md5sum wimboot
 iseq ${img_sigs_enabled} true && goto verify_sigs || goto skip_sigs
 :verify_sigs
