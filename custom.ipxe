@@ -5,14 +5,15 @@
 
 set base-url http://pxe.lan/windows
 
-goto ${menu} ||
-
 :custom
+clear custom_choice
 set os Microsoft Windows
 menu ${os}
 item --gap Install ${os} version:
 item WIN10X64.PRO.ENU.SEP2019 ${space} WIN10X64.PRO.ENU.SEP2019...
-goto windows
+choose custom_choice || goto custom_exit
+echo ${cls}
+goto ${custom_choice}
 
 
 :WIN10X64.PRO.ENU.SEP2019
@@ -30,5 +31,6 @@ imgverify wimboot ${sigs}wimboot.sig || goto error
 :skip_sigs
 boot
 
-:exit
-exit 0
+:custom_exit
+chain utils.ipxe
+exit
